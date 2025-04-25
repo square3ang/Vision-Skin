@@ -148,3 +148,32 @@ $( function () {
 		$( this ).find( '.dropdown-menu' ).first().stop( true, true ).fadeToggle( 200 );
 	} );
 } );
+
+const targetNode = document.getElementsByClassName("opennamu_main")[0];
+
+const config = { attributes: true, childList: true, subtree: true };
+
+const callback = (mutationList, observer) => {
+  const elements = Array.from(document.querySelectorAll('a[href="javascript:void(0);"]'))
+  .filter(el => {
+    const text = el.textContent.trim();
+    return text.startsWith('(') && text.endsWith(')');
+  });
+  for (var e of elements) {
+    var a = e.innerHTML;
+    e.innerHTML = "[" + a.substring(1, a.length-1) + "]";
+  }
+  const elements2 = Array.from(document.querySelectorAll('.opennamu_footnote > a'))
+  .filter(el => {
+    const text = el.textContent.trim();
+    return text.startsWith('(') && text.endsWith(') ');
+  });
+  for (var e of elements2) {
+    var a = e.innerHTML;
+    e.innerHTML = "[" + a.substring(1, a.length-2) + "] ";
+  }
+};
+
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
+
