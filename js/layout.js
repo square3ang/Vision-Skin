@@ -166,7 +166,7 @@ const callback = (mutationList, observer) => {
   const elements2 = Array.from(document.querySelectorAll('.opennamu_footnote > a'))
   .filter(el => {
     const text = el.textContent.trim();
-    return text.startsWith('(') && text.endsWith(') ');
+    return text.startsWith('(') && text.endsWith(')');
   });
   for (var e of elements2) {
     var a = e.innerHTML;
