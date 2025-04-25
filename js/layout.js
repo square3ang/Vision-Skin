@@ -181,5 +181,5 @@ const callback = (mutationList, observer) => {
 const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
 
-footbote_shape();
+footnote_shape();
 
