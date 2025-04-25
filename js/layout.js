@@ -174,7 +174,7 @@ function footnote_shape() {
 }
 
 const callback = (mutationList, observer) => {
-      footbote_shape();
+      footnote_shape();
   }
 };
 
