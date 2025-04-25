@@ -171,6 +171,7 @@ function footnote_shape() {
   for (var e of elements2) {
     var a = e.innerHTML;
     e.innerHTML = "[" + a.substring(1, a.length-2) + "] ";
+  }
 }
 
 const callback = (mutationList, observer) => {
