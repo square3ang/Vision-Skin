@@ -153,7 +153,7 @@ const targetNode = document.getElementsByClassName("opennamu_main")[0];
 
 const config = { attributes: true, childList: true, subtree: true };
 
-const callback = (mutationList, observer) => {
+function footnote_shape() {
   const elements = Array.from(document.querySelectorAll('a[href="javascript:void(0);"]'))
   .filter(el => {
     const text = el.textContent.trim();
@@ -171,9 +171,15 @@ const callback = (mutationList, observer) => {
   for (var e of elements2) {
     var a = e.innerHTML;
     e.innerHTML = "[" + a.substring(1, a.length-2) + "] ";
+}
+
+const callback = (mutationList, observer) => {
+      footbote_shape();
   }
 };
 
 const observer = new MutationObserver(callback);
 observer.observe(targetNode, config);
+
+footbote_shape();
 
