@@ -16,14 +16,14 @@ function ringo_do_url_encode(data) {
 vision_user_info();
 function vision_user_info() {
     let name = document.getElementById('sidebar-0-name1').innerHTML;
-        
-    fetch("/api/user_info/" + ringo_do_xss_encode(name)).then(function(res) {
+
+    fetch("/api/user_info/" + ringo_do_xss_encode(name)).then(function (res) {
         return res.json();
-    }).then(function(text) {
+    }).then(function (text) {
         let data = "";
-        for(let for_a = 0; for_a < text['data'].length; for_a++) {
+        for (let for_a = 0; for_a < text['data'].length; for_a++) {
             data += ringo_do_url_encode(text['data'][for_a]['level']) +
-            ' (' + ringo_do_url_encode(text['data'][for_a]['exp']) + ' / ' + ringo_do_url_encode(text['data'][for_a]['max_exp']) + ')';
+                ' (' + ringo_do_url_encode(text['data'][for_a]['exp']) + ' / ' + ringo_do_url_encode(text['data'][for_a]['max_exp']) + ')';
         }
         document.getElementById('sidebar-0-name3').innerHTML = data;
     });
@@ -31,13 +31,13 @@ function vision_user_info() {
 
 ringo_do_side_button_1();
 function ringo_do_side_button_1() {
-    fetch("/api/recent_change/14").then(function(res) {
+    fetch("/api/recent_change/14").then(function (res) {
         return res.json();
-    }).then(function(text) {
+    }).then(function (text) {
         let data = '';
-        for(let for_a = 0; for_a < text.length && for_a < 14; for_a++) {
-            if(text[for_a][6] === '') {
-                data += '<li><a class="recent-item" href="/w/'+ ringo_do_xss_encode(text[for_a][1]) + '">';
+        for (let for_a = 0; for_a < text.length && for_a < 14; for_a++) {
+            if (text[for_a][6] === '') {
+                data += '<li><a class="recent-item" href="/w/' + ringo_do_xss_encode(text[for_a][1]) + '">';
                 data += '<span class="recent-time">' + ringo_do_xss_encode(text[for_a][2].slice(11, -3)) + '</span>';
                 data += '<span class="recent-title">' + ringo_do_xss_encode(text[for_a][1]) + '</span></a></li>';
             } else {
@@ -45,70 +45,70 @@ function ringo_do_side_button_1() {
             }
         }
         document.getElementById('sidebar-1-list').innerHTML = data;
-    }).catch(function(error) {
+    }).catch(function (error) {
         document.getElementById('sidebar-1-item').innerHTML = 'API를 불러오지 못했습니다!';
     });
 }
 
 ringo_do_side_button_2();
 function ringo_do_side_button_2() {
-    fetch("/api/recent_discuss").then(function(res) {
+    fetch("/api/recent_discuss").then(function (res) {
         return res.json();
-    }).then(function(text) {
+    }).then(function (text) {
         let data = '';
-        for(let for_a = 0; for_a < text.length && for_a < 6; for_a++) {
+        for (let for_a = 0; for_a < text.length && for_a < 6; for_a++) {
             data += '<li><a class="recent-item" href="/thread/' + ringo_do_url_encode(text[for_a][3]) + '">';
             data += '<span class="recent-time">' + ringo_do_xss_encode(text[for_a][2].slice(11, -3)) + '</span>';
             data += '<span class="recent-title">' + ringo_do_xss_encode(text[for_a][1]) + '</span></a></li>';
         }
         document.getElementById('sidebar-2-list').innerHTML = data;
-    }).catch(function(error) {
+    }).catch(function (error) {
         document.getElementById('sidebar-2-item').innerHTML = 'API를 불러오지 못했습니다!';
     });
 }
 
 ringo_do_side_button_3();
 function ringo_do_side_button_3() {
-    fetch("/api/v2/bbs/main").then(function(res) {
+    fetch("/api/v2/bbs/main").then(function (res) {
         return res.json();
-    }).then(function(text) {
+    }).then(function (text) {
         let data = '';
-        for(let for_a = 0; for_a < text["data"].length && for_a < 6; for_a++) {
+        for (let for_a = 0; for_a < text["data"].length && for_a < 6; for_a++) {
             data += '<li><a class="recent-item" href="/bbs/w/' + ringo_do_xss_encode(text["data"][for_a]["set_id"]) + '/' + ringo_do_xss_encode(text["data"][for_a]["set_code"]) + '">';
             data += '<span class="recent-time">' + ringo_do_xss_encode(text["data"][for_a]["date"].slice(11, -3)) + '</span>';
             data += '<span class="recent-title">' + ringo_do_xss_encode(text["data"][for_a]["title"]) + '</span></a></li>';
         }
         document.getElementById('sidebar-3-list').innerHTML = data;
-    }).catch(function(error) {
+    }).catch(function (error) {
         document.getElementById('sidebar-3-item').innerHTML = 'API를 불러오지 못했습니다!';
     });
 }
 
 ringo_do_side_button_4();
 function ringo_do_side_button_4() {
-    fetch("https://namgall.wikiing.in/api/open_recent_changes").then(function(res) {
+    fetch("https://namgall.wikiing.in/api/open_recent_changes").then(function (res) {
         return res.json();
-    }).then(function(text) {
+    }).then(function (text) {
         let data = '';
-        for(let for_a = 0; for_a < text.length && for_a < 8; for_a++) {
-            data += '<li><a class="recent-item" href="'+ text[for_a][8] + ringo_do_xss_encode(text[for_a][1]) + '">';
+        for (let for_a = 0; for_a < text.length && for_a < 8; for_a++) {
+            data += '<li><a class="recent-item" href="' + text[for_a][8] + ringo_do_xss_encode(text[for_a][1]) + '">';
             data += '<span class="recent-time">' + ringo_do_xss_encode(text[for_a][2].slice(11, -3)) + '</span>';
             data += '<span class="recent-title">' + "[" + ringo_do_xss_encode(text[for_a][7]) + "] " + ringo_do_xss_encode(text[for_a][1]) + '</span></a></li>';
         }
         document.getElementById('sidebar-4-list').innerHTML = data;
-    }).catch(function(error) {
+    }).catch(function (error) {
         document.getElementById('sidebar-4-item').innerHTML = 'API를 불러오지 못했습니다!';
     });
 }
 
-if(window.location.pathname === '/License') {
+if (window.location.pathname === '/License') {
     vision_license_1();
     function vision_license_1() {
-        fetch("/api/version").then(function(res) {
+        fetch("/api/version").then(function (res) {
             return res.json();
-        }).then(function(text) {
+        }).then(function (text) {
             let data = '';
-            for(let for_a = 0; for_a < text.length; for_a++) {
+            for (let for_a = 0; for_a < text.length; for_a++) {
                 data += "Version:" + text[for_a]["version"];
             }
             document.getElementById('openNAMU_ver').innerHTML = data;
@@ -117,11 +117,11 @@ if(window.location.pathname === '/License') {
 
     vision_license_2();
     function vision_license_2() {
-        fetch("/api/skin_info").then(function(res) {
+        fetch("/api/skin_info").then(function (res) {
             return res.json();
-        }).then(function(text) {
+        }).then(function (text) {
             let data = '';
-            for(let for_a = 0; for_a < text.length; for_a++) {
+            for (let for_a = 0; for_a < text.length; for_a++) {
                 data += "Version:" + text[for_a]["skin_ver"];
             }
             document.getElementById('Vision_ver').innerHTML = data;
@@ -130,52 +130,56 @@ if(window.location.pathname === '/License') {
 }
 
 // Dropdown
-$( function () {
-	'use strict';
-	$( '.dropdown' ).on( 'show.bs.dropdown', function () {
-		$( this ).find( '.dropdown-menu' ).first().stop( true, true ).fadeToggle( 200 );
-	} );
+$(function () {
+    'use strict';
+    $('.dropdown').on('show.bs.dropdown', function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).fadeToggle(200);
+    });
 
-	$( '.dropdown' ).on( 'hide.bs.dropdown', function () {
-		$( this ).find( '.dropdown-menu' ).first().stop( true, true ).fadeToggle( 200 );
-	} );
+    $('.dropdown').on('hide.bs.dropdown', function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).fadeToggle(200);
+    });
 
-	$( '.btn-group' ).on( 'show.bs.dropdown', function () {
-		$( this ).find( '.dropdown-menu' ).first().stop( true, true ).fadeToggle( 200 );
-	} );
+    $('.btn-group').on('show.bs.dropdown', function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).fadeToggle(200);
+    });
 
-	$( '.btn-group' ).on( 'hide.bs.dropdown', function () {
-		$( this ).find( '.dropdown-menu' ).first().stop( true, true ).fadeToggle( 200 );
-	} );
-} );
+    $('.btn-group').on('hide.bs.dropdown', function () {
+        $(this).find('.dropdown-menu').first().stop(true, true).fadeToggle(200);
+    });
+});
 
 const targetNode = document.getElementsByClassName("opennamu_main")[0];
 
 const config = { attributes: true, childList: true, subtree: true };
 
 function footnote_shape() {
-  const elements = Array.from(document.querySelectorAll('a[href="javascript:void(0);"]'))
-  .filter(el => {
-    const text = el.textContent.trim();
-    return text.startsWith('(') && text.endsWith(')');
-  });
-  for (var e of elements) {
-    var a = e.innerHTML;
-    e.innerHTML = "[" + a.substring(1, a.length-1) + "]";
-  }
-  const elements2 = Array.from(document.querySelectorAll('.opennamu_footnote > a'))
-  .filter(el => {
-    const text = el.textContent.trim();
-    return text.startsWith('(') && text.endsWith(')');
-  });
-  for (var e of elements2) {
-    var a = e.innerHTML;
-    e.innerHTML = "[" + a.substring(1, a.length-2) + "] ";
-  }
+    for (var e of document.querySelectorAll('a[href="javascript:void(0);"]')) {
+        var a = e.innerHTML;
+        if (!a.startsWith('(') || !a.endsWith(')')) continue;
+        e.innerHTML = "[" + a.substring(1, a.length - 1) + "]";
+    }
+    for (var e of document.querySelectorAll('.opennamu_footnote > a')) {
+        var a = e.innerHTML;
+        if (!a.startsWith('(')) continue;
+        if (a.endsWith(')')) {
+            e.innerHTML = "[" + a.substring(1, a.length - 1) + "]";
+        }
+        else if (a.endsWith(') ')) {
+            e.innerHTML = "[" + a.substring(1, a.length - 2) + "] ";
+        }
+        
+    }
+    for (var node of document.getElementsByClassName("opennamu_footnote")[0].childNodes) {
+        if (node.nodeType != Node.TEXT_NODE) continue;
+        var a = node.nodeValue;
+        if (!a.startsWith('(') || !a.endsWith(') ')) continue;
+        node.nodeValue = "[" + a.substring(1, a.length - 2) + "] ";
+    }
 }
 
 const callback = (mutationList, observer) => {
-      footnote_shape();
+    footnote_shape();
 };
 
 const observer = new MutationObserver(callback);
