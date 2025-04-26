@@ -151,7 +151,7 @@ $(function () {
 
 const targetNode = document.getElementsByClassName("opennamu_main")[0];
 
-const config = { attributes: true, childList: true, subtree: true };
+const config = { childList: true, subtree: true };
 
 function footnote_shape() {
     for (var e of document.querySelectorAll('a[href="javascript:void(0);"]')) {
@@ -161,14 +161,13 @@ function footnote_shape() {
     }
     for (var e of document.querySelectorAll('.opennamu_footnote > a')) {
         var a = e.innerHTML;
-        if (!a.startsWith('(')) continue;
-        if (a.endsWith(')')) {
-            e.innerHTML = "[" + a.substring(1, a.length - 1) + "]";
-        }
-        else if (a.endsWith(') ')) {
-            e.innerHTML = "[" + a.substring(1, a.length - 2) + "] ";
-        }
-        
+        if (!a.startsWith('(') || !a.endsWith(') ')) continue;
+        e.innerHTML = "[" + a.substring(1, a.length - 2) + "] ";
+    }
+    for (var e of document.querySelectorAll('.opennamu_footnote > sup > a')) {
+        var a = e.innerHTML;
+        if (!a.startsWith('(') || !a.endsWith(')')) continue;
+        e.innerHTML = "[" + a.substring(1, a.length - 1) + "] ";
     }
     for (var node of document.getElementsByClassName("opennamu_footnote")[0].childNodes) {
         if (node.nodeType != Node.TEXT_NODE) continue;
